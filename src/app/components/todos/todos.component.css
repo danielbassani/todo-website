@@ -8,3 +8,25 @@
 .center {
     text-align: center;
 }
+
+.todo-input {
+    border: 1px solid rgb(123, 123, 123);
+    margin-right: 5px;
+    min-height: 5vh;
+    min-width: 20vw;
+}
+
+.todo-input:focus {
+    border: 1px solid #555;
+    background-color: aliceblue;
+}
+
+.add-todo-btn {
+    min-width: 5vh;
+    min-height: 5vh;
+    background-color: white;
+}
+
+.add-todo-btn:hover {
+    background-color: rgb(185, 185, 185);
+}

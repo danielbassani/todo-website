@@ -41,4 +41,16 @@ export class TodosComponent implements OnInit {
     this.todosService.deleteTodo(title);
   }
 
+  toggleTodoComplete(todo: Todo): void {
+    let id = '#tr-' + todo.title;
+
+    if (!todo.isCompleted) {
+      todo.isCompleted = true;
+      $(id).css('background-color', 'green');
+    } else {
+      todo.isCompleted = false;
+      $(id).css('background-color', '');
+    }
+  }
+
 }
