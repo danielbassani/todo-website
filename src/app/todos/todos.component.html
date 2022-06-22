@@ -1,1 +1,12 @@
-<p>todos works!</p>
+<div *ngFor="let todo of todos">
+    <div class="form-check">
+        <input class="form-check-input" (click)="onClick(todo)" type="checkbox" id="{{todo.title}}">
+        <label class="form-check-label" for="{{todo.title}}" id="{{ todo.title + 'Label'}}">{{todo.title}}</label>
+        <button id="{{todo.title}} + 'Delete'" (click)="deleteTodo(todo.title)">Delete</button>
+    </div>
+</div>
+
+<div>
+    <input #addTodoInput id="addTodoInput" type="text" placeholder="My Todo">
+    <button id="addTodoBtn" (click)="addTodo(addTodoInput.value)">Add Todo</button>
+</div>
