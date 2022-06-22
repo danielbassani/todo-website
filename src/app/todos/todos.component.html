@@ -1,12 +1,21 @@
-<div *ngFor="let todo of todos">
-    <div class="form-check">
-        <input class="form-check-input" (click)="onClick(todo)" type="checkbox" id="{{todo.title}}">
-        <label class="form-check-label" for="{{todo.title}}" id="{{ todo.title + 'Label'}}">{{todo.title}}</label>
-        <button id="{{todo.title}} + 'Delete'" (click)="deleteTodo(todo.title)">Delete</button>
-    </div>
-</div>
+<table class="table todo-table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Task</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let todo of todos; let i = index">
+        <tr>
+            <th scope="row">{{ i + 1 }}</th>
+            <th>{{ todo.title }}</th>
+            <th><button (click)="deleteTodo(todo.title)">Delete</button></th>
+        </tr>
+    </tbody>
+</table>
 
-<div>
+<div class="center p-3">
     <input #addTodoInput id="addTodoInput" type="text" placeholder="My Todo">
     <button id="addTodoBtn" (click)="addTodo(addTodoInput.value)">Add Todo</button>
 </div>
