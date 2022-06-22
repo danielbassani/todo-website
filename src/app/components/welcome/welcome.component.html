@@ -1,0 +1,16 @@
+<div class="bg-info d-flex flex-column">
+    <div>
+        <button id="toggle-button" class="toggle-button" data-bs-toggle="collapse" data-bs-target="#welcome-collapse" aria-expanded="false" aria-controls="welcomeCollapse">
+            <i id="toggle-arrow" class="fa fa-angle-down arrow-icon" aria-hidden="true"></i>
+        </button>
+    </div>
+    <div class="collapse bg-info show" id="welcome-collapse">
+        <h1> Welcome Back.</h1>
+        <h1> {{ date | date: 'medium'}} </h1>
+        <br>
+    </div>
+</div>
+
+
+
+

@@ -1,0 +1,16 @@
+h1 {
+    text-align: center;
+}
+
+.welcome-banner {
+    min-height: 25vh;
+}
+
+.toggle-button {
+    float: right;
+    background-color: transparent;
+    border: none;
+}
+.arrow-icon {
+    font-size: 26px;
+}
