@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TodosService } from '../services/todos.service';
-import { Todo } from '../models/todo.model';
+import { TodosService } from '../../services/todos.service';
+import { Todo } from 'src/app/models/todo.model';
 import * as $ from 'jquery';
 
 @Component({
