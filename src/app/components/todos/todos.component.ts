@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TodosService } from '../../services/todos.service';
 import { Todo } from 'src/app/models/todo.model';
 import * as $ from 'jquery';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-todos',
@@ -10,18 +11,30 @@ import * as $ from 'jquery';
 })
 export class TodosComponent implements OnInit {
 
-  todos: Todo[] = [];
+  public todos: Todo[] = [];
+  public confirmOnDelete: boolean = false;
 
-  constructor(private todosService: TodosService) { }
+  public todoToDeleteModal: string = '';
+
+  constructor(private todosService: TodosService, private cookieService: CookieService) { }
 
   ngOnInit(): void {
+    let confirmOnDeleteCookie = this.cookieService.get('confirmOnDelete');
+    if (confirmOnDeleteCookie) {
+      this.confirmOnDelete = JSON.parse(confirmOnDeleteCookie);
+    }
+
     this.todos = this.todosService.getAllTodos();
+
+    $('#confirmDeleteSwitch').on('change', () => {
+      console.log('here')
+      this.cookieService.set('confirmOnDelete', JSON.stringify(this.confirmOnDelete));
+    })
   }
 
   ngAfterViewInit(): void {
     this.todos.forEach(todo => {
       if (todo.isCompleted) {
-        console.log('hello')
         let id = '#tr-' + todo.title;
         $(id).css('background-color', 'green');
       }
@@ -49,6 +62,7 @@ export class TodosComponent implements OnInit {
 
   deleteTodo(title: string): void {
     this.todosService.deleteTodo(title);
+    this.setTodoToDeleteModal('');
   }
 
   toggleTodoComplete(todo: Todo): void {
@@ -65,4 +79,7 @@ export class TodosComponent implements OnInit {
     this.todosService.updateTodo(todo);
   }
 
+  setTodoToDeleteModal(title: string): void {
+    this.todoToDeleteModal = title;
+  }
 }
