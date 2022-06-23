@@ -38,8 +38,6 @@ export class TodosService {
         this.todoList.push(new Todo(titles[i], JSON.parse(completed[i])));
       }
     }
-
-    console.log(this.todoList);
   }
 
   getAllTodos(): Todo[] {
@@ -48,7 +46,6 @@ export class TodosService {
 
   addTodo(todo:Todo): void {
     this.todoList.push(todo);
-    console.log(this.todoList)
     this.saveInCookie();
   }
 
@@ -68,7 +65,6 @@ export class TodosService {
   }
 
   updateTodo(todo: Todo): void {
-    console.log('hello');
     let i = this.todoList.findIndex((el) => {
       return el.title === todo.title;
     })
