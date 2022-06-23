@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { CookieService } from 'ngx-cookie-service';
 import { Todo } from '../models/todo.model';
 
 @Injectable({
@@ -7,41 +8,82 @@ import { Todo } from '../models/todo.model';
 })
 export class TodosService {
 
-  dummyTodoList: Todo[] = [
-    {'title': 'test'}
-  ];
+  todoList: Todo[] = []; 
   
   /*
   [
-    {'title': 'cooking', 'description': 'test description', 'isCompleted': false},
-    {'title': 'cleaning', 'description': 'test description', 'isCompleted': false},
-    {'title': 'homework', 'description': 'test description', 'isCompleted': false},
-    {'title': 'coding', 'description': 'test description', 'isCompleted': false},
-    {'title': 'pancakes', 'description': 'test description', 'isCompleted': false}
-  ]
+    {'title': 'cooking'},
+    {'title': 'cleaning'},
+    {'title': 'homework'},
+    {'title': 'coding'},
+    {'title': 'pancakes'}
+  ];
+  */
+  
+  /*
+  [
+    {'title': 'test'}
+  ];
   */
 
-  constructor() { }
+  constructor(private cookieService: CookieService) {
+    let titlesStr = this.cookieService.get('titles');
+    let completedStr = this.cookieService.get('completed');
+
+    if (titlesStr) {
+      let titles: string[] = titlesStr.split(',');
+      let completed: string[] = completedStr.split(',');
+
+      for (let i = 0; i < titles.length - 1; i++) {
+        this.todoList.push(new Todo(titles[i], JSON.parse(completed[i])));
+      }
+    }
+
+    console.log(this.todoList);
+  }
 
   getAllTodos(): Todo[] {
-    return this.dummyTodoList;
+    return this.todoList;
   }
 
   addTodo(todo:Todo): void {
-    this.dummyTodoList.push(todo);
+    this.todoList.push(todo);
+    console.log(this.todoList)
+    this.saveInCookie();
   }
 
   checkIfExistsByTitle(title: string): boolean {
-    return this.dummyTodoList.some((el) => {
+    return this.todoList.some((el) => {
       return el.title === title;
     });
   }
 
   deleteTodo(title: string) :void {
-    let i = this.dummyTodoList.findIndex((el) => {
+    let i = this.todoList.findIndex((el) => {
       return el.title === title;
     })
 
-    this.dummyTodoList.splice(i, 1);
+    this.todoList.splice(i, 1);
+    this.saveInCookie();
+  }
+
+  updateTodo(todo: Todo): void {
+    console.log('hello');
+    let i = this.todoList.findIndex((el) => {
+      return el.title === todo.title;
+    })
+    this.todoList.splice(i, 1, todo);
+    this.saveInCookie();
+  }
+
+  private saveInCookie() {
+    let titlesStr = '';
+    let completedStr = '';
+    this.todoList.forEach((el) => {
+      titlesStr += el.title + ','
+      completedStr += el.isCompleted + ','
+    })
+    this.cookieService.set('titles', titlesStr)
+    this.cookieService.set('completed', completedStr);
   }
 }
