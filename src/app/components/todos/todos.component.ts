@@ -18,6 +18,16 @@ export class TodosComponent implements OnInit {
     this.todos = this.todosService.getAllTodos();
   }
 
+  ngAfterViewInit(): void {
+    this.todos.forEach(todo => {
+      if (todo.isCompleted) {
+        console.log('hello')
+        let id = '#tr-' + todo.title;
+        $(id).css('background-color', 'green');
+      }
+    })
+  }
+
   onClick(todo: Todo): void {
     let id = '#' + todo.title + 'Label';
 
@@ -31,7 +41,7 @@ export class TodosComponent implements OnInit {
 
   addTodo(title: string): void {
     if (title && !this.todosService.checkIfExistsByTitle(title)) {
-      let todo:Todo = new Todo(title);
+      let todo:Todo = new Todo(title, false);
       this.todosService.addTodo(todo);
     }
     $('#addTodoInput').val('');
@@ -51,6 +61,8 @@ export class TodosComponent implements OnInit {
       todo.isCompleted = false;
       $(id).css('background-color', '');
     }
+
+    this.todosService.updateTodo(todo);
   }
 
 }
