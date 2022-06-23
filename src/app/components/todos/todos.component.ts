@@ -82,4 +82,12 @@ export class TodosComponent implements OnInit {
   setTodoToDeleteModal(title: string): void {
     this.todoToDeleteModal = title;
   }
+
+  moveUp(index: number): void {
+    this.todosService.moveUp(index);
+  }
+
+  moveDown(index: number): void {
+    this.todosService.moveDown(index);
+  }
 }

@@ -30,3 +30,12 @@
 .add-todo-btn:hover {
     background-color: rgb(185, 185, 185);
 }
+
+.move-button {
+    border: none;
+    background-color: transparent;
+}
+
+.move-button:hover {
+    color:lightskyblue
+}

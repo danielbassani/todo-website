@@ -1,4 +1,4 @@
-h1 {
+h1, h6 {
     text-align: center;
 }
 
@@ -14,3 +14,9 @@ h1 {
 .arrow-icon {
     font-size: 26px;
 }
+
+.custom-transition {
+   /* transition-delay: 0.5s;*/
+   transition-duration: 0.5s;
+}
+

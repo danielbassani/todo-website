@@ -1,12 +1,19 @@
 <div class="bg-info d-flex flex-column">
     <div>
-        <button id="toggle-button" class="toggle-button" data-bs-toggle="collapse" data-bs-target="#welcome-collapse" aria-expanded="false" aria-controls="welcomeCollapse">
+        <button id="toggle-button" class="toggle-button" data-bs-toggle="collapse" data-bs-target=".collapse-group" aria-expanded="false" aria-controls="welcomeCollapse shortWelcomeCollapse">
             <i id="toggle-arrow" class="fa fa-angle-down arrow-icon" aria-hidden="true"></i>
         </button>
     </div>
-    <div class="collapse bg-info show" id="welcome-collapse">
+    <div class="collapse collapse-group bg-info show" id="welcome-collapse">
         <h1> Welcome Back.</h1>
         <h1> {{ date | date: 'medium'}} </h1>
+        <br>
+        <h6> * Notice: This website uses cookies to store your To-Do List and save your preferences.</h6>
+        <h6> There are no third-party cookies and your data is not saved anywhere. Deleting browser cookies</h6>
+        <h6> will delete your To-Do List along with any settings.</h6>
+    </div>
+    <div class="collapse collapse-group bg-info custom-transition" id="short-welcome-collapse">
+        <h1 id="only-date"> {{ date | date: 'medium'}} </h1>
         <br>
     </div>
 </div>
