@@ -28,7 +28,7 @@
 }
 
 .add-todo-btn:hover {
-    background-color: rgb(185, 185, 185);
+    background-color: lightgray;
 }
 
 .move-button {

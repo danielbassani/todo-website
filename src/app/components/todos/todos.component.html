@@ -21,7 +21,7 @@
             </th>
             <th>{{ i + 1 }}</th>
             <th>{{ todo.title }}</th>
-            <th>
+            <th *ngIf="todos.length > 0">
                 <button *ngIf="!todo.isCompleted" class="btn btn-success" title="Mark as Done" (click)="toggleTodoComplete(i, todo)"><i class="fa fa-check" aria-hidden="true"></i></button>
                 <button *ngIf="todo.isCompleted" class="btn btn-warning" title="Mark as Incomplete" (click)="toggleTodoComplete(i, todo)"><i class="fa fa-times" aria-hidden="true"></i></button>
                 <button *ngIf="!confirmOnDelete" class="btn btn-danger m-1" title="Delete" (click)="deleteTodo(todo.title)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
@@ -30,6 +30,10 @@
         </tr>
     </tbody>
 </table>
+
+<div class="center" *ngIf="todos.length === 0">
+    <h4>Get Started by Adding a To-Do Below.</h4>
+</div>
 
 <div class="center p-3">
     <input #addTodoInput id="addTodoInput" class="todo-input" type="text" placeholder="My Todo" maxlength="85">
