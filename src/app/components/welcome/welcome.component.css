@@ -11,6 +11,7 @@ h1, h6 {
     background-color: transparent;
     border: none;
 }
+
 .arrow-icon {
     font-size: 26px;
 }
@@ -18,5 +19,9 @@ h1, h6 {
 .custom-transition {
    /* transition-delay: 0.5s;*/
    transition-duration: 0.5s;
+}
+
+.gradient {
+    background-image: linear-gradient(to right, dodgerblue, lightblue)
 }
 

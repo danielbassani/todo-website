@@ -39,3 +39,8 @@
 .move-button:hover {
     color:lightskyblue
 }
+
+.delete-switch {
+    float: right; 
+    margin-right: 20vw;
+}
