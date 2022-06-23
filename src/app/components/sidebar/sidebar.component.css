@@ -4,3 +4,40 @@
     position:sticky;
     top: 0px;
 }
+
+.sidebar-btn {
+    overflow: hidden;
+    background-color: transparent;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    border-top: 1px solid black;
+    height: 75px;
+    color: white;
+    text-align: center;
+    line-height: 65px;
+    text-decoration: none;
+}
+
+.social-media-btn {
+    border: 1px solid black;
+}
+
+.sidebar-btn:hover, .social-media-btn:hover {
+    background-color: rgb(75, 75, 75);
+}
+
+.social-media-icon {
+    font-size: 4vw;
+}
+
+.social-media-text {
+    margin-left: 5px;
+}
+
+.sidebar-title {
+    color: white;
+    margin-left: 5px;
+    margin-top: 5px;
+    margin-bottom: 50px;
+}

@@ -19,6 +19,11 @@ export class TodosComponent implements OnInit {
   constructor(private todosService: TodosService, private cookieService: CookieService) { }
 
   ngOnInit(): void {
+    // subscribe for when we clear and re-reference the list
+    TodosService.listChangedReference.subscribe(() => {
+      this.todos = this.todosService.getAllTodos();
+    });
+
     let confirmOnDeleteCookie = this.cookieService.get('confirmOnDelete');
     if (confirmOnDeleteCookie) {
       this.confirmOnDelete = JSON.parse(confirmOnDeleteCookie);
@@ -33,22 +38,11 @@ export class TodosComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-    this.todos.forEach(todo => {
-      if (todo.isCompleted) {
-        let id = '#tr-' + todo.title;
+    for(let i = 0; i < this.todos.length; i++) {
+      if (this.todos[i].isCompleted) {
+        let id = '#tr-' + i;
         $(id).css('background-color', 'green');
       }
-    })
-  }
-
-  onClick(todo: Todo): void {
-    let id = '#' + todo.title + 'Label';
-
-    if (!todo.isCompleted) {
-      $(id).css({'color': 'red', 'text-decoration': 'line-through'});
-    } else {
-      todo.isCompleted = true;
-      $(id).css({'color': 'black', 'text-decoration': 'none'});
     }
   }
 
