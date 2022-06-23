@@ -65,8 +65,8 @@ export class TodosComponent implements OnInit {
     this.setTodoToDeleteModal('');
   }
 
-  toggleTodoComplete(todo: Todo): void {
-    let id = '#tr-' + todo.title;
+  toggleTodoComplete(i: number, todo: Todo): void {
+    let id = '#tr-' + i;
 
     if (!todo.isCompleted) {
       todo.isCompleted = true;
@@ -81,5 +81,13 @@ export class TodosComponent implements OnInit {
 
   setTodoToDeleteModal(title: string): void {
     this.todoToDeleteModal = title;
+  }
+
+  moveUp(index: number): void {
+    this.todosService.moveUp(index);
+  }
+
+  moveDown(index: number): void {
+    this.todosService.moveDown(index);
   }
 }

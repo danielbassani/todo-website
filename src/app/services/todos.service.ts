@@ -72,6 +72,22 @@ export class TodosService {
     this.saveInCookie();
   }
 
+  moveUp(index: number): void {
+    let todo: Todo = this.todoList[index];
+    this.todoList.splice(index, 1);
+    this.todoList.splice(index - 1, 0, todo);
+
+    this.saveInCookie();
+  }
+
+  moveDown(index: number): void {
+    let todo: Todo = this.todoList[index];
+    this.todoList.splice(index, 1);
+    this.todoList.splice(index + 1, 0, todo);
+
+    this.saveInCookie();
+  }
+
   private saveInCookie() {
     let titlesStr = '';
     let completedStr = '';

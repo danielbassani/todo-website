@@ -28,5 +28,19 @@
 }
 
 .add-todo-btn:hover {
-    background-color: rgb(185, 185, 185);
+    background-color: lightgray;
+}
+
+.move-button {
+    border: none;
+    background-color: transparent;
+}
+
+.move-button:hover {
+    color:lightskyblue
+}
+
+.delete-switch {
+    float: right; 
+    margin-right: 20vw;
 }

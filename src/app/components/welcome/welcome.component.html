@@ -1,12 +1,26 @@
-<div class="bg-info d-flex flex-column">
+<div class="gradient d-flex flex-column">
     <div>
-        <button id="toggle-button" class="toggle-button" data-bs-toggle="collapse" data-bs-target="#welcome-collapse" aria-expanded="false" aria-controls="welcomeCollapse">
+        <button id="toggle-button" class="toggle-button" data-bs-toggle="collapse" data-bs-target=".collapse-group" aria-expanded="false" aria-controls="welcomeCollapse shortWelcomeCollapse">
             <i id="toggle-arrow" class="fa fa-angle-down arrow-icon" aria-hidden="true"></i>
         </button>
     </div>
-    <div class="collapse bg-info show" id="welcome-collapse">
-        <h1> Welcome Back.</h1>
+    <div class="collapse collapse-group gradient show" id="welcome-collapse">
+        <h1 *ngIf=" date.getDay() === 0"> The Weekend's Almost Over. </h1>
+        <h1 *ngIf=" date.getDay() === 1"> Let's Start the Week Right. </h1>
+        <h1 *ngIf=" date.getDay() === 2"> It's Time to Grind. </h1>
+        <h1 *ngIf=" date.getDay() === 3"> We're Halfway to the Weekend. </h1>
+        <h1 *ngIf=" date.getDay() === 4"> It's Almost Friday. </h1>
+        <h1 *ngIf=" date.getDay() === 5"> Happy Friday. </h1>
+        <h1 *ngIf=" date.getDay() === 6"> Try to Relax Today. </h1>
         <h1> {{ date | date: 'medium'}} </h1>
+        <br>
+        <h6> * Notice: This website uses cookies to store your To-Do List and save your preferences.</h6>
+        <h6> There are no third-party cookies and your data is not saved anywhere. Deleting browser cookies</h6>
+        <h6> will delete your To-Do List along with any settings.</h6>
+        <br>
+    </div>
+    <div class="collapse collapse-group gradient custom-transition" id="short-welcome-collapse">
+        <h1 id="only-date"> {{ date | date: 'medium'}} </h1>
         <br>
     </div>
 </div>

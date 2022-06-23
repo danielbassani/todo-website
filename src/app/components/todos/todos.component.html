@@ -1,4 +1,4 @@
-<div class="form-check form-switch m-3">
+<div class="form-check form-switch delete-switch">
     <input class="form-check-input" type="checkbox" id="confirmDeleteSwitch" [(ngModel)]="confirmOnDelete">
     <label class="form-check-label" for="flexSwitchCheckDefault">Confirm on Delete</label>
 </div>
@@ -6,28 +6,38 @@
 <table class="table todo-table">
     <thead>
         <tr>
+            <th scope="col"><i class="fa fa-arrow-up" aria-hidden="true"></i><i class="fa fa-arrow-down" aria-hidden="true"></i></th>
             <th scope="col">#</th>
             <th scope="col">Task</th>
             <th scope="col">Action</th>
         </tr>
     </thead>
     <tbody *ngFor="let todo of todos; let i = index">
-        <tr id="tr-{{todo.title}}">
-            <th scope="row">{{ i + 1 }}</th>
+        <tr id="tr-{{i}}">
+            <th scope="row">
+                <button *ngIf="i !== 0" type="button" class="move-button" (click)="moveUp(i)"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                <br>
+                <button *ngIf="i !== todos.length - 1" type="button" class="move-button" (click)="moveDown(i)"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+            </th>
+            <th>{{ i + 1 }}</th>
             <th>{{ todo.title }}</th>
-            <th>
-                <button *ngIf="!todo.isCompleted" class="btn btn-success" (click)="toggleTodoComplete(todo)"><i class="fa fa-check" aria-hidden="true"></i></button>
-                <button *ngIf="todo.isCompleted" class="btn btn-warning" (click)="toggleTodoComplete(todo)"><i class="fa fa-times" aria-hidden="true"></i></button>
-                <button *ngIf="!confirmOnDelete" class="btn btn-danger m-1" (click)="deleteTodo(todo.title)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                <button *ngIf="confirmOnDelete" class="btn btn-danger m-1"(click)="setTodoToDeleteModal(todo.title)" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+            <th *ngIf="todos.length > 0">
+                <button *ngIf="!todo.isCompleted" class="btn btn-success" title="Mark as Done" (click)="toggleTodoComplete(i, todo)"><i class="fa fa-check" aria-hidden="true"></i></button>
+                <button *ngIf="todo.isCompleted" class="btn btn-warning" title="Mark as Incomplete" (click)="toggleTodoComplete(i, todo)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                <button *ngIf="!confirmOnDelete" class="btn btn-danger m-1" title="Delete" (click)="deleteTodo(todo.title)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                <button *ngIf="confirmOnDelete" class="btn btn-danger m-1"title="Delete" (click)="setTodoToDeleteModal(todo.title)" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
             </th>
         </tr>
     </tbody>
 </table>
 
+<div class="center" *ngIf="todos.length === 0">
+    <h4>Get Started by Adding a To-Do Below.</h4>
+</div>
+
 <div class="center p-3">
     <input #addTodoInput id="addTodoInput" class="todo-input" type="text" placeholder="My Todo" maxlength="85">
-    <button id="addTodoBtn" class="add-todo-btn" (click)="addTodo(addTodoInput.value)"><i class="fa fa-plus" aria-hidden="true"></i></button>
+    <button id="addTodoBtn" class="add-todo-btn" title="Add to List" (click)="addTodo(addTodoInput.value)"><i class="fa fa-plus" aria-hidden="true"></i></button>
 </div>
   
 <!-- Modal -->

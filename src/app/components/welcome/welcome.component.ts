@@ -20,9 +20,12 @@ export class WelcomeComponent implements OnInit {
       if (arrowIconElement.hasClass('fa-angle-down')) {
         arrowIconElement.removeClass('fa-angle-down');
         arrowIconElement.addClass('fa-angle-left');
+        $('#only-date').css('visibility', 'visible')
       } else {
         arrowIconElement.removeClass('fa-angle-left');
         arrowIconElement.addClass('fa-angle-down');
+
+        $('#only-date').css('visibility', 'hidden')
       }
     })
   }
