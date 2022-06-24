@@ -1,5 +1,4 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
 import { Todo } from '../models/todo.model';
 
 @Injectable({
@@ -10,11 +9,11 @@ export class TodosService {
   @Output() public static listChangedReference: EventEmitter<any> = new EventEmitter();
   private todoList: Todo[] = []; 
 
-  constructor(private cookieService: CookieService) {
-    let titlesStr = this.cookieService.get('titles');
-    let completedStr = this.cookieService.get('completed');
+  constructor() {
+    let titlesStr = localStorage.getItem('titles');
+    let completedStr = localStorage.getItem('completed');
 
-    if (titlesStr) {
+    if (titlesStr && completedStr) {
       let titles: string[] = titlesStr.split(',');
       let completed: string[] = completedStr.split(',');
 
@@ -30,7 +29,7 @@ export class TodosService {
 
   addTodo(todo:Todo): void {
     this.todoList.push(todo);
-    this.saveInCookie('titles', 'completed');
+    this.saveInLocalStorage('titles', 'completed');
   }
 
   checkIfExistsByTitle(title: string): boolean {
@@ -45,31 +44,29 @@ export class TodosService {
     })
 
     this.todoList.splice(i, 1);
-    this.saveInCookie('titles', 'completed');
+    this.saveInLocalStorage('titles', 'completed');
   }
 
   deleteAll(): void {
-    this.saveInCookie('titlesBackup', 'completedBackup')
+    this.saveInLocalStorage('titlesBackup', 'completedBackup')
     this.todoList = [];
-    this.saveInCookie('titles', 'completed');
+    this.saveInLocalStorage('titles', 'completed');
     
 
     TodosService.listChangedReference.emit();
   }
 
   deleteAllCompleted(): void {
-    this.saveInCookie('titlesBackup', 'completedBackup')
+    this.saveInLocalStorage('titlesBackup', 'completedBackup')
     let tempList: Todo[] = []
     this.todoList.forEach(todo => {
       if (!todo.isCompleted) {
-        console.log('hello')
         tempList.push(todo);
       }
     })
-    console.log(tempList);
 
     this.todoList = tempList;
-    this.saveInCookie('titles', 'completed');
+    this.saveInLocalStorage('titles', 'completed');
 
     TodosService.listChangedReference.emit();
   }
@@ -79,7 +76,7 @@ export class TodosService {
       return el.title === todo.title;
     })
     this.todoList.splice(i, 1, todo);
-    this.saveInCookie('titles', 'completed');
+    this.saveInLocalStorage('titles', 'completed');
   }
 
   moveUp(index: number): void {
@@ -87,7 +84,7 @@ export class TodosService {
     this.todoList.splice(index, 1);
     this.todoList.splice(index - 1, 0, todo);
 
-    this.saveInCookie('titles', 'completed');
+    this.saveInLocalStorage('titles', 'completed');
   }
 
   moveDown(index: number): void {
@@ -95,17 +92,17 @@ export class TodosService {
     this.todoList.splice(index, 1);
     this.todoList.splice(index + 1, 0, todo);
 
-    this.saveInCookie('titles', 'completed');
+    this.saveInLocalStorage('titles', 'completed');
   }
 
-  private saveInCookie(cookieNameForTitles: string, cookieNameForCompleted: string) {
+  private saveInLocalStorage(nameForTitles: string, nameForCompleted: string) {
     let titlesStr = '';
     let completedStr = '';
     this.todoList.forEach((el) => {
       titlesStr += el.title + ','
       completedStr += el.isCompleted + ','
     })
-    this.cookieService.set(cookieNameForTitles, titlesStr)
-    this.cookieService.set(cookieNameForCompleted, completedStr);
+    localStorage.setItem(nameForTitles, titlesStr)
+    localStorage.setItem(nameForCompleted, completedStr);
   }
 }
