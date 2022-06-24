@@ -83,4 +83,15 @@ export class TodosComponent implements OnInit {
   moveDown(index: number): void {
     this.todosService.moveDown(index);
   }
+
+  keyPressAlphaNumeric(event: any): boolean {
+    let input = String.fromCharCode(event.keyCode);
+
+    if (/[a-zA-Z0-9 ]/.test(input)) {
+      return true;
+    } else {
+      event.preventDefault();
+      return false;
+    }
+  }
 }
