@@ -6,9 +6,17 @@
 
   <body>
     <app-welcome></app-welcome>
-    <div class="d-flex flex-column background">
-      <h1>My To-Do List</h1>
-      <app-todos></app-todos>
+    <div class="d-flex">
+      <div class="col-2 sidebar">
+        <app-sidebar></app-sidebar>
+      </div>
+      <div class="col-10">
+        <div class="d-flex flex-column background">
+          <h1>My To-Do List</h1>
+          <app-todos></app-todos>
+        </div>
+      </div>
     </div>
+    
   </body>
 </html>
