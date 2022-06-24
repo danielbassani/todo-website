@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { TodosService } from '../../services/todos.service';
 import { Todo } from 'src/app/models/todo.model';
 import * as $ from 'jquery';
-import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-todos',
@@ -16,7 +15,7 @@ export class TodosComponent implements OnInit {
 
   public todoToDeleteModal: string = '';
 
-  constructor(private todosService: TodosService, private cookieService: CookieService) { }
+  constructor(private todosService: TodosService) { }
 
   ngOnInit(): void {
     // subscribe for when we clear and re-reference the list
@@ -24,7 +23,7 @@ export class TodosComponent implements OnInit {
       this.todos = this.todosService.getAllTodos();
     });
 
-    let confirmOnDeleteCookie = this.cookieService.get('confirmOnDelete');
+    let confirmOnDeleteCookie = localStorage.getItem('confirmOnDelete');
     if (confirmOnDeleteCookie) {
       this.confirmOnDelete = JSON.parse(confirmOnDeleteCookie);
     }
@@ -33,7 +32,7 @@ export class TodosComponent implements OnInit {
 
     $('#confirmDeleteSwitch').on('change', () => {
       console.log('here')
-      this.cookieService.set('confirmOnDelete', JSON.stringify(this.confirmOnDelete));
+      localStorage.setItem('confirmOnDelete', JSON.stringify(this.confirmOnDelete));
     })
   }
 

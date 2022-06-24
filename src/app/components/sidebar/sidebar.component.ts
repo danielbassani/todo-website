@@ -1,7 +1,4 @@
-import { trimTrailingNulls } from '@angular/compiler/src/render3/view/util';
 import { Component, OnInit } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
-import { Todo } from 'src/app/models/todo.model';
 import { TodosService } from 'src/app/services/todos.service';
 
 @Component({
@@ -11,7 +8,7 @@ import { TodosService } from 'src/app/services/todos.service';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor(private cookieService: CookieService, private todosService: TodosService) { }
+  constructor(private todosService: TodosService) { }
 
   ngOnInit(): void {
   }
