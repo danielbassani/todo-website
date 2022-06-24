@@ -4,15 +4,15 @@
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   </head>
 
-  <body>
+  <body class="palette-default">
     <app-welcome></app-welcome>
     <div class="d-flex">
       <div class="col-2 sidebar">
         <app-sidebar></app-sidebar>
       </div>
       <div class="col-10">
-        <div class="d-flex flex-column background">
-          <h1>My To-Do List</h1>
+        <div class="d-flex flex-column">
+          <app-colour-picker></app-colour-picker>
           <app-todos></app-todos>
         </div>
       </div>

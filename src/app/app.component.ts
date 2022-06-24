@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+import { ColourPickerComponent } from './components/colour-picker/colour-picker.component';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Hello';
+ 
+  ngOnInit(): void {
+    ColourPickerComponent.changeColourEvent.subscribe((palette) => {
+      this.changeColourPalette(palette);
+    })
+  }
+
+  changeColourPalette(palette: string) {
+    $('body').removeClass((index, className) => {
+      return (className.match (/palette-\S+/g) || []).join(' ')
+    })
+
+    $('body').addClass('palette-' + palette);
+  }
 }
