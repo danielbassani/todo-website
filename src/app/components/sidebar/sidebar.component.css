@@ -1,0 +1,65 @@
+.sidebar {
+    height: 100vh;
+    position: -webkit-sticky;
+    position:sticky;
+    top: 0px;
+}
+
+.sidebar-btn {
+    overflow: hidden;
+    background-color: transparent;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    border-top: 1px solid black;
+    height: 75px;
+    color: white;
+    text-align: center;
+    line-height: 65px;
+    text-decoration: none;
+}
+
+.social-media-btn {
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: none;
+    border-top: 1px solid black;
+    background-color: white;
+    text-decoration: none;
+    color: black;
+    text-align: center;
+}
+
+.sidebar-btn:hover {
+    background-color: #171515;
+}
+
+.github-hover:hover {
+    color: white;
+    background-color: darkorchid;
+}
+
+.linkedin-hover:hover {
+    color: white;
+    background-color: #0072b1;
+}
+
+.insta-hover:hover {
+    color: white;
+    background-image: linear-gradient(to bottom left, #4c68d7, #8a3ab9, #bc2a8d,#cd486b, #e95950, #fbad50, #fccc63);
+}
+
+.social-media-icon {
+    font-size: 4vw;
+}
+
+.sidebar-title {
+    color: white;
+    margin-left: 5px;
+    margin-top: 5px;
+    margin-bottom: 50px;
+}
+
+.bottom-border {
+    border-bottom: 1px solid black;;
+}
