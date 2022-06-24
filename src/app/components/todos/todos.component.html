@@ -36,7 +36,7 @@
 </div>
 
 <div class="center p-3">
-    <input #addTodoInput id="addTodoInput" class="todo-input" type="text" placeholder="My Todo" maxlength="85">
+    <input #addTodoInput id="addTodoInput" class="todo-input" type="text" placeholder="My Todo" maxlength="85" (keypress)="keyPressAlphaNumeric($event)">
     <button id="addTodoBtn" class="add-todo-btn" title="Add to List" (click)="addTodo(addTodoInput.value)"><i class="fa fa-plus" aria-hidden="true"></i></button>
 </div>
   
