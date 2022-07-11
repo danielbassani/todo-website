@@ -1,10 +1,12 @@
-<div class="gradient d-flex flex-column">
+<div class="d-flex flex-column">
+    <!--
     <div>
         <button id="toggle-button" class="toggle-button" data-bs-toggle="collapse" data-bs-target=".collapse-group" aria-expanded="false" aria-controls="welcomeCollapse shortWelcomeCollapse">
             <i id="toggle-arrow" class="fa fa-angle-down arrow-icon" aria-hidden="true"></i>
         </button>
     </div>
-    <div class="collapse collapse-group gradient show" id="welcome-collapse">
+    -->
+    <div class="collapse collapse-group gradient-default show" id="welcome-collapse">
         <h1 *ngIf=" date.getDay() === 0"> The Weekend's Almost Over. </h1>
         <h1 *ngIf=" date.getDay() === 1"> Let's Start the Week Right. </h1>
         <h1 *ngIf=" date.getDay() === 2"> It's Time to Grind. </h1>
@@ -19,10 +21,12 @@
         <h6>  You can clear your cookies and it will <strong>not</strong> delete your To-Do List or any settings.</h6>
         <br>
     </div>
+    <!--
     <div class="collapse collapse-group gradient custom-transition" id="short-welcome-collapse">
         <h1 id="only-date"> {{ date | date: 'medium'}} </h1>
         <br>
     </div>
+-->
 </div>
 
 

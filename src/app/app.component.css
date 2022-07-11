@@ -2,6 +2,14 @@ h1 {
     text-align: center;
 }
 
-.background {
-    background-color: white;
+.palette-default {
+    background-color: azure;
+}
+
+.palette-red {
+    background-color: antiquewhite;
+}
+
+.palette-insta {
+    background-color: lavenderblush;
 }

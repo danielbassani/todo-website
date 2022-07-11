@@ -1,0 +1,24 @@
+.default-colour {
+    background-image: linear-gradient(to bottom right, blueviolet, darkorchid, dodgerblue, lightblue);
+}
+
+.default-colour > i {
+    color: white;
+}
+
+.red-colour {
+    background-image: linear-gradient(to bottom right, maroon, orangered, orange, yellow);
+}
+
+.insta-colour {
+    background-image: linear-gradient(to bottom left, #4c68d7, #8a3ab9, #bc2a8d,#cd486b, #e95950, #fbad50, #fccc63);
+}
+
+.consistent-margin {
+    margin: 4px;
+}
+
+.consistent-margin > button {
+    margin: inherit;
+    border-radius: 20%;
+}

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {interval, Subscription } from 'rxjs';
 import * as $ from 'jquery';
+import { ColourPickerComponent } from '../colour-picker/colour-picker.component';
 
 @Component({
   selector: 'app-welcome',
@@ -15,6 +16,10 @@ export class WelcomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    ColourPickerComponent.changeColourEvent.subscribe((palette) => {
+      this.changeColourPalette(palette);
+    })
+
     $('#toggle-button').on('click', () => {
       let arrowIconElement = $('#toggle-arrow');
       if (arrowIconElement.hasClass('fa-angle-down')) {
@@ -34,4 +39,11 @@ export class WelcomeComponent implements OnInit {
     this.date = new Date();
   }
 
+  changeColourPalette(palette: string) {
+    $('#welcome-collapse').removeClass((index, className) => {
+      return (className.match (/gradient-\S+/g) || []).join(' ')
+    })
+
+    $('#welcome-collapse').addClass('gradient-' + palette);
+  }
 }

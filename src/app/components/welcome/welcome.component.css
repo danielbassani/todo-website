@@ -21,7 +21,14 @@ h1, h6 {
    transition-duration: 0.5s;
 }
 
-.gradient {
-    background-image: linear-gradient(to right, dodgerblue, lightblue)
+.gradient-default {
+   background-image: linear-gradient(to bottom right, blueviolet, darkorchid, dodgerblue, lightblue);
 }
 
+.gradient-red {
+    background-image: linear-gradient(to bottom right, maroon, orangered, orange, yellow);
+}
+
+.gradient-insta {
+    background-image: linear-gradient(to bottom left, #4c68d7, #8a3ab9, #bc2a8d,#cd486b, #e95950, #fbad50, #fccc63);
+}
